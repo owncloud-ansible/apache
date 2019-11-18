@@ -1,4 +1,10 @@
 ---
+- name: Ensure dependencies are installed
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ apache_packages_extra }}"
+
 - name: Ensure Apache is installed
   package:
     name: "{{ item }}"

@@ -75,6 +75,11 @@ apache_state: started
 # @end
 apache_restart_state: restarted
 
+# @var apache_packages_extra:description: >
+# Can be used to install other dependency packages.
+# @end
+apache_packages_extra: []
+
 # @var apache_packages_state:description: >
 # Use `present` to make sure it's installed, or `latest`
 # if you want to upgrade.
