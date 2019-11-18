@@ -1,0 +1,17 @@
+---
+- name: Ensure Apache is installed
+  package:
+    name: "{{ item }}"
+    state: "{{ apache_packages_state }}"
+  loop: "{{ apache_packages }}"
+
+- name: Configure Apache
+  lineinfile:
+    dest: "{{ apache_port_conf_file }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop: "{{ apache_ports_configuration_items }}"
+  notify: __apache_restart
+
+...

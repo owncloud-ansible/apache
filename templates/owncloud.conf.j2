@@ -1,0 +1,94 @@
+#jinja2: lstrip_blocks: True
+{{ ansible_managed | comment }}
+{# Set up VirtualHosts #}
+{% for vhost in apache_vhosts %}
+<VirtualHost {{ apache_listen_ip }}:{{ apache_listen_port }}>
+  ServerName {{ vhost.servername }}
+{% if vhost.serveralias is defined %}
+  ServerAlias {{ vhost.serveralias }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  DocumentRoot "{{ vhost.documentroot }}"
+{% endif %}
+  DirectoryIndex index.php index.html
+
+{% if vhost.serveradmin is defined %}
+  ServerAdmin {{ vhost.serveradmin }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  <Directory "{{ vhost.documentroot }}">
+    AllowOverride {{ vhost.allow_override | default(apache_allow_override) }}
+    Options {{ vhost.options | default(apache_options) | join(" ") }}
+    Require all granted
+  </Directory>
+{% endif %}
+{% for param in vhost.extra_parameters | default([]) %}
+  {{ param }}
+{% endfor %}
+</VirtualHost>
+
+{% endfor %}
+
+{# Set up SSL VirtualHosts #}
+{% for vhost in apache_vhosts_ssl %}
+<VirtualHost {{ apache_listen_ip }}:{{ apache_listen_port_ssl }}>
+  ServerName {{ vhost.servername }}
+{% if vhost.serveralias is defined %}
+  ServerAlias {{ vhost.serveralias }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  DocumentRoot "{{ vhost.documentroot }}"
+{% endif %}
+  DirectoryIndex index.php index.html
+
+  SSLEngine on
+  SSLCipherSuite {{ apache_ssl_cipher_suite }}
+  SSLProtocol {{ apache_ssl_protocol }}
+  SSLHonorCipherOrder On
+  SSLCompression off
+  SSLCertificateFile {{ vhost.certificate_file }}
+  SSLCertificateKeyFile {{ vhost.certificate_key_file }}
+{% if vhost.certificate_chain_file is defined %}
+  SSLCertificateChainFile {{ vhost.certificate_chain_file }}
+{% endif %}
+
+{% if vhost.header_hsts_options is defined %}
+  # protect against protocol downgrading and cookie hijacking
+  # https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#hsts
+  Header always set Strict-Transport-Security "{{ vhost.header_hsts_options | join('; ') }}"
+{% endif %}
+{% if vhost.header_xfo_policy is defined %}
+  # improve the protection against Clickjacking
+  # https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xfo
+  Header always setX-Frame-Options {{ vhost.header_xfo_policy }}
+{% endif %}
+{% if vhost.header_csp_options is defined %}
+  Header always set Content-Security-Policy "{% for item in vhost.header_csp_options %}{{ item.directive }} {{ item.parameters | join(' ') }};{% endfor %}"
+{% endif %}
+{% if vhost.header_xcto_enabled | default(False) %}
+  # prevent from interpreting files as something else than declared by the content type in HTTP headers
+  # https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xcto
+  Header always set X-Content-Type-Options nosniff
+{% endif %}
+{% if vhost.header_xxxsp_parameters is defined %}
+  # enables the cross-site scripting (XSS) filter of the browsers
+  # https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xxxsp
+  Header always set X-XSS-Protection "1; {{ vhost.header_xxxsp_parameters | default([])|join(' ; ') }}"
+{% endif %}
+
+{% if vhost.serveradmin is defined %}
+  ServerAdmin {{ vhost.serveradmin }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  <Directory "{{ vhost.documentroot }}">
+    AllowOverride {{ vhost.allow_override | default(apache_allow_override) }}
+    Options {{ vhost.options | default(apache_options) | join(" ") }}
+    Require all granted
+  </Directory>
+{% endif %}
+{% for param in vhost.extra_parameters | default([]) %}
+  {{ param }}
+{% endfor %}
+</VirtualHost>
+
+{% endfor %}

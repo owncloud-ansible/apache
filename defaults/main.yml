@@ -1,0 +1,83 @@
+---
+apache_listen_ip: "*"
+apache_listen_port: 80
+apache_listen_port_ssl: 443
+
+apache_vhost_name: "owncloud.conf"
+
+# Additional properties:
+# 'serveradmin, serveralias, allow_override, options, extra_parameters'.
+apache_vhosts:
+  - servername: "cloud.owncloud.demo"
+    documentroot: "/var/www/owncloud"
+
+apache_vhosts_ssl: []
+# @var apache_vhosts_ssl:example: >
+# apache_vhosts_ssl
+#   - servername: "local.dev",
+#     documentroot: "/var/www/html",
+#     certificate_file: "/path/to/certificate.crt",
+#     certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
+#     certificate_key_file: "/path/to/certificate.key",
+#     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
+#     # Optional.
+#     certificate_chain_file: "/path/to/certificate_chain.crt"
+#     certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
+#     header_ocsp_trusted_certificate:
+#     header_hsts_options:
+#       - max-age=63072000
+#       - includeSubDomains
+#     header_xfo_policy: deny
+#     header_xcto_enabled: True
+#     header_csp_options:
+#       - directive: frame-ancestors
+#         parameters:
+#           - https://example.com
+#           - https://mypage.com
+#     header_xxxsp_parameters:
+#       - mode=block
+# @end
+
+apache_allow_override: "All"
+apache_options:
+  - "-Indexes"
+  - "+FollowSymLinks"
+
+apache_ssl_protocol: "All -SSLv2 -SSLv3"
+apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
+
+# @var apache_mods_enabled:description: >
+# Only used on Debian/Ubuntu. CentOS/RHEL will auto enable available modules.
+# @end
+apache_mods_enabled:
+  - rewrite.load
+  - ssl.load
+  - headers.load
+  - env.load
+  - dir.load
+  - mime.load
+  - unique_id.load
+  - autoindex.load
+
+# @var apache_mods_enabled:description: >
+# Only used on Debian/Ubuntu.
+# @end
+apache_mods_disabled: []
+
+# @var apache_state:description: >
+# Set initial apache state. Recommended values: `started` or `stopped`.
+# @end
+apache_state: started
+
+# @var apache_restart_state:description: >
+# Set apache state when configuration changes are made. Recommended values:
+# `restarted` or `reloaded`.
+# @end
+apache_restart_state: restarted
+
+# @var apache_packages_state:description: >
+# Use `present` to make sure it's installed, or `latest`
+# if you want to upgrade.
+apache_packages_state: present
+
+...

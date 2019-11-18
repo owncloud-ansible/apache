@@ -1,0 +1,21 @@
+---
+__apache_service: httpd24-httpd
+__apache_server_root: /opt/rh/httpd24/root/etc/httpd
+__apache_conf_path: "{{ __apache_server_root }}/conf.d"
+__apache_port_conf_file: "{{ __apache_server_root }}/conf/httpd.conf"
+
+__apache_default_vhost_name: ssl.conf
+
+__apache_packages:
+  - httpd24
+  - httpd24-httpd-devel
+  - httpd24-mod_ssl
+  - openssh
+
+__apache_ports_configuration_items:
+  - regexp: "^Listen "
+    line: "Listen {{ apache_listen_port }}"
+  - regexp: "^#?NameVirtualHost "
+    line: "NameVirtualHost {{ apache_listen_ip }}:{{ apache_listen_port }}"
+
+...

@@ -1,0 +1,29 @@
+---
+- name: Build temp list for filetransfer
+  set_fact:
+    __apache_cert_files: >
+      {{
+        __apache_cert_files | default([]) + [
+          { 'src': item.certificate_file_source | default(False), 'dest': item.certificate_file | default(False), 'mode': '0750' },
+          { 'src': item.certificate_chain_source | default(False), 'dest': item.certificate_chain_file | default(False), 'mode': '0750' },
+          { 'src': item.certificate_key_source | default(False), 'dest': item.certificate_key_file | default(False), 'mode': '0600' },
+        ]
+      }}
+  loop: "{{ apache_vhosts_ssl }}"
+  loop_control:
+    label: "{{ item.servername }}"
+
+- name: Copy ssl certificate files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ __apache_cert_files | default([]) }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  notify: __apache_restart
+  when:
+    - item.src
+    - item.dest
+
+...

@@ -1,0 +1,23 @@
+---
+# TODO: ugly workaround
+# file should be removed completely and re-build from template if required
+- name: Remove default vhost
+  blockinfile:
+    path: "{{ apache_conf_path }}/{{ apache_default_vhost_name }}"
+    marker: "{mark}"
+    marker_begin: "<VirtualHost _default_:443>"
+    # Be aware of the trailing whitespaces! Otherwise marker_end will not work
+    marker_end: "</VirtualHost>                                  "
+    state: absent
+  notify: __apache_restart
+
+- name: Add apache vhosts configuration
+  template:
+    src: owncloud.conf.j2
+    dest: "{{ apache_conf_path }}/{{ apache_vhost_name }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: __apache_restart
+
+...
