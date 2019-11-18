@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    redis_packages_extra:
+    apache_packages_extra:
       - centos-release-scl
 
   roles:
