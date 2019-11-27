@@ -71,25 +71,18 @@ local PipelineDocumentation = {
                 ANSIBLE_DOCTOR_LOG_LEVEL: "INFO",
                 ANSIBLE_DOCTOR_FORCE_OVERWRITE: true,
                 ANSIBLE_DOCTOR_EXCLUDE_FILES: "molecule/",
-                ANSIBLE_DOCTOR_CUSTOM_HEADER: "HEADER.md",
+                ANSIBLE_DOCTOR_TEMPLATE: "hugo-book",
+                ANSIBLE_DOCTOR_OUTPUT_DIR: "_docs/",
             },
         },
         {
-            name: "commit",
-            image: "plugins/git-action:latest",
+            name: "publish",
+            image: "plugins/gh-pages:latest",
             settings: {
-                actions: [
-                    "commit",
-                    "push"
-                ],
-                author_email: { from_secret: "github_author_email" },
-                author_name: "ownClouders",
-                branch: "master",
-                message: "[SKIP CI] update readme",
-                remote: "https://github.com/owncloud-ansible/apache",
-                netrc_machine:" github.com",
-                netrc_username: { from_secret: "github_username" },
-                netrc_password: { from_secret: "github_token" },
+                username: { from_secret: "github_username" },
+                password: { from_secret: "github_token" },
+                pages_directory: "_docs/",
+                target_branch: "docs",
             },
             when: {
                 ref: ["refs/heads/master"],
@@ -113,6 +106,21 @@ local PipelineNotification = {
         arch: "amd64",
     },
     steps: [
+        {
+            name: "docs",
+            image: "plugins/downstream",
+            settings: {
+                server: "https://drone.owncloud.com",
+                token: { from_secret: "drone_token" },
+                fork: true,
+                repositories: [
+                    "owncloud-ansible/owncloud-ansible.github.io@source",
+                ],
+            },
+            when: {
+                status: ["success"],
+            },
+        },
         {
             name: "notify",
             image: "plugins/slack:1",
