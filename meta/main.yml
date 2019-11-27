@@ -1,6 +1,7 @@
 # Standards: 0.1
 ---
 galaxy_info:
+  # @meta name:value: apache
   author: Robert Kaussow
   description: Setup apache webserver
   license: Apache-2.0
