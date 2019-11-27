@@ -89,7 +89,7 @@ local PipelineDocumentation = {
             },
         },
         {
-            name: "docs",
+            name: "trigger",
             image: "plugins/downstream",
             settings: {
                 server: "https://drone.owncloud.com",
