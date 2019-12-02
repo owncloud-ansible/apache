@@ -130,6 +130,9 @@ steps:
     server: https://drone.owncloud.com
     token:
       from_secret: drone_token
+  when:
+    ref:
+    - refs/heads/master
 
 trigger:
   ref:
@@ -174,6 +177,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 281b95e53993211a921ccd1da219a8436c8908c2e6e89fccb2244dc7172b3951
+hmac: 002078cc8dc858a49d4baebbf281009753bec48e0b26c4606ef32c437e14c831
 
 ...
