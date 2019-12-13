@@ -13,12 +13,12 @@ apache_vhosts:
 
 apache_vhosts_ssl: []
 # @var apache_vhosts_ssl:example: >
-# apache_vhosts_ssl
-#   - servername: "local.dev",
-#     documentroot: "/var/www/html",
-#     certificate_file: "/path/to/certificate.crt",
+# apache_vhosts_ssl:
+#   - servername: "local.dev"
+#     documentroot: "/var/www/html"
+#     certificate_file: "/path/to/certificate.crt"
 #     certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
-#     certificate_key_file: "/path/to/certificate.key",
+#     certificate_key_file: "/path/to/certificate.key"
 #     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
 #     # Optional.
 #     certificate_chain_file: "/path/to/certificate_chain.crt"
