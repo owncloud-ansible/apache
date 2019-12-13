@@ -183,29 +183,29 @@ apache_vhosts_ssl: []
 #### Example usage
 
 ```YAML
-apache_vhosts_ssl
-- servername: "local.dev",
-documentroot: "/var/www/html",
-certificate_file: "/path/to/certificate.crt",
-certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
-certificate_key_file: "/path/to/certificate.key",
-certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
-Optional.
-certificate_chain_file: "/path/to/certificate_chain.crt"
-certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
-header_ocsp_trusted_certificate:
-header_hsts_options:
-- max-age=63072000
-- includeSubDomains
-header_xfo_policy: deny
-header_xcto_enabled: True
-header_csp_options:
-- directive: frame-ancestors
-parameters:
-- https://example.com
-- https://mypage.com
-header_xxxsp_parameters:
-- mode=block
+apache_vhosts_ssl:
+  - servername: "local.dev"
+    documentroot: "/var/www/html"
+    certificate_file: "/path/to/certificate.crt"
+    certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
+    certificate_key_file: "/path/to/certificate.key"
+    certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
+     Optional.
+    certificate_chain_file: "/path/to/certificate_chain.crt"
+    certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
+    header_ocsp_trusted_certificate:
+    header_hsts_options:
+      - max-age=63072000
+      - includeSubDomains
+    header_xfo_policy: deny
+    header_xcto_enabled: True
+    header_csp_options:
+      - directive: frame-ancestors
+        parameters:
+          - https://example.com
+          - https://mypage.com
+    header_xxxsp_parameters:
+      - mode=block
 ```
 
 ## Dependencies
