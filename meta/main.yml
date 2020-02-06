@@ -9,7 +9,7 @@ galaxy_info:
   # [![GitHub](https://img.shields.io/github/license/owncloud-ansible/apache)](https://github.com/owncloud-ansible/apache/blob/master/LICENSE)
   #
   # {{< hint warning >}}
-  # **Warning**\
+  # __Warning__<br/>
   # This Ansible role is currently in beta state. Use it at your own risk.
   # {{< /hint >}}
   #
