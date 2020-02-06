@@ -11,6 +11,7 @@ Role to setup Apache webserver.
 
 * [Default Variables](#default-variables)
   * [apache_allow_override](#apache-allow-override)
+  * [apache_apt_cache_update](#apache-apt-cache-update)
   * [apache_listen_ip](#apache-listen-ip)
   * [apache_listen_port](#apache-listen-port)
   * [apache_listen_port_ssl](#apache-listen-port-ssl)
@@ -38,6 +39,16 @@ Role to setup Apache webserver.
 
 ```YAML
 apache_allow_override: All
+```
+
+### apache_apt_cache_update
+
+Automatically update apt cache on package installations. This setting will only applied on apt-based operating systems e.g. Ubuntu.
+
+#### Default value
+
+```YAML
+apache_apt_cache_update: false
 ```
 
 ### apache_listen_ip
