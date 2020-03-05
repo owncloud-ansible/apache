@@ -203,7 +203,7 @@ apache_vhosts_ssl:
     certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
     certificate_key_file: "/path/to/certificate.key"
     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
-     Optional.
+    # Optional.
     certificate_chain_file: "/path/to/certificate_chain.crt"
     certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
     header_ocsp_trusted_certificate:
