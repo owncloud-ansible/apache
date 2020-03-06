@@ -58,5 +58,14 @@ branches:
       restrictions:
         users: []
         teams: []
+  - name: docs
+    protection:
+      required_pull_request_reviews: null
+      required_status_checks: null
+      enforce_admins: true
+      restrictions:
+        users: []
+        teams:
+          - bot
 
 ...
