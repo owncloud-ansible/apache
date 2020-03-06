@@ -57,7 +57,6 @@ branches:
       enforce_admins: false
       restrictions:
         users: []
-        teams:
-          - maintainer
+        teams: []
 
 ...
