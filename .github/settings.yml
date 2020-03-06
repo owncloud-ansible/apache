@@ -2,7 +2,7 @@
 repository:
   name: apache
   description: Ansible role for Apache2
-  homepage: https://owncloud-ansible.github.io/role/apache/
+  homepage: https://owncloud-ansible.github.io
   topics: ansible, owncloud, apache
 
   private: false
