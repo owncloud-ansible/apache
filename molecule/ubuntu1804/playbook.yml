@@ -1,5 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    apache_apt_cache_update: True
+
   roles:
     - role: apache

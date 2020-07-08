@@ -60,7 +60,7 @@
 {% if vhost.header_xfo_policy is defined %}
   # improve the protection against Clickjacking
   # https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xfo
-  Header always setX-Frame-Options {{ vhost.header_xfo_policy }}
+  Header always set X-Frame-Options {{ vhost.header_xfo_policy }}
 {% endif %}
 {% if vhost.header_csp_options is defined %}
   Header always set Content-Security-Policy "{% for item in vhost.header_csp_options %}{{ item.directive }} {{ item.parameters | join(' ') }};{% endfor %}"
