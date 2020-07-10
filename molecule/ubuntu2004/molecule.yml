@@ -4,9 +4,9 @@ dependency:
 driver:
   name: delegated
 platforms:
-  - name: centos-7-apache
+  - name: ubuntu-20.04-apache
     server_type: cx11
-    image: centos-7
+    image: ubuntu-20.04
 lint: |
   flake8
 provisioner:
