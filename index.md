@@ -10,23 +10,23 @@ type: docs
 Role to setup Apache webserver.
 
 * [Default Variables](#default-variables)
-  * [apache_allow_override](#apache-allow-override)
-  * [apache_apt_cache_update](#apache-apt-cache-update)
-  * [apache_listen_ip](#apache-listen-ip)
-  * [apache_listen_port](#apache-listen-port)
-  * [apache_listen_port_ssl](#apache-listen-port-ssl)
-  * [apache_mods_disabled](#apache-mods-disabled)
-  * [apache_mods_enabled](#apache-mods-enabled)
-  * [apache_options](#apache-options)
-  * [apache_packages_extra](#apache-packages-extra)
-  * [apache_packages_state](#apache-packages-state)
-  * [apache_restart_state](#apache-restart-state)
-  * [apache_ssl_cipher_suite](#apache-ssl-cipher-suite)
-  * [apache_ssl_protocol](#apache-ssl-protocol)
-  * [apache_state](#apache-state)
-  * [apache_vhost_name](#apache-vhost-name)
-  * [apache_vhosts](#apache-vhosts)
-  * [apache_vhosts_ssl](#apache-vhosts-ssl)
+  * [apache_allow_override](#apache_allow_override)
+  * [apache_apt_cache_update](#apache_apt_cache_update)
+  * [apache_listen_ip](#apache_listen_ip)
+  * [apache_listen_port](#apache_listen_port)
+  * [apache_listen_port_ssl](#apache_listen_port_ssl)
+  * [apache_mods_disabled](#apache_mods_disabled)
+  * [apache_mods_enabled](#apache_mods_enabled)
+  * [apache_options](#apache_options)
+  * [apache_packages_extra](#apache_packages_extra)
+  * [apache_packages_state](#apache_packages_state)
+  * [apache_restart_state](#apache_restart_state)
+  * [apache_ssl_cipher_suite](#apache_ssl_cipher_suite)
+  * [apache_ssl_protocol](#apache_ssl_protocol)
+  * [apache_state](#apache_state)
+  * [apache_vhost_name](#apache_vhost_name)
+  * [apache_vhosts](#apache_vhosts)
+  * [apache_vhosts_ssl](#apache_vhosts_ssl)
 * [Dependencies](#dependencies)
 
 ---
@@ -146,7 +146,7 @@ apache_restart_state: restarted
 #### Default value
 
 ```YAML
-apache_ssl_cipher_suite: AES256+EECDH:AES256+EDH
+apache_ssl_cipher_suite: ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 ```
 
 ### apache_ssl_protocol
@@ -154,7 +154,7 @@ apache_ssl_cipher_suite: AES256+EECDH:AES256+EDH
 #### Default value
 
 ```YAML
-apache_ssl_protocol: All -SSLv2 -SSLv3
+apache_ssl_protocol: All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
 ```
 
 ### apache_state
