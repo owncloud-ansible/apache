@@ -23,10 +23,6 @@
         - inventory_hostname == item.instance
         - item.from_snapshot | bool
 
-    - name: Wait for apt lock
-      shell: while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do echo 'Waiting for apt list lock.' && sleep 10; done
-      changed_when: False
-
     - name: Bootstrap python for Ansible
       raw: |
         command -v python3 python || (
