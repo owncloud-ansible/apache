@@ -33,5 +33,3 @@
   set_fact:
     apache_ports_configuration_items: "{{ __apache_ports_configuration_items }}"
   when: apache_ports_configuration_items is not defined
-
-...

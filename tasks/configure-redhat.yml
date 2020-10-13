@@ -19,5 +19,3 @@
     group: root
     mode: 0644
   notify: __apache_restart
-
-...

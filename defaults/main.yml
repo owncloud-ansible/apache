@@ -90,5 +90,3 @@ apache_packages_extra: []
 # Use `present` to make sure it's installed, or `latest`
 # if you want to upgrade.
 apache_packages_state: present
-
-...

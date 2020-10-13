@@ -25,5 +25,3 @@
   when:
     - item.src
     - item.dest
-
-...

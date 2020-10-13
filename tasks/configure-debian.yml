@@ -35,5 +35,3 @@
     dest: "{{ apache_conf_path }}/sites-enabled/{{ apache_vhost_name }}"
     state: link
   notify: __apache_restart
-
-...
