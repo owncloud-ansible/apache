@@ -21,5 +21,3 @@
     state: present
   loop: "{{ apache_ports_configuration_items }}"
   notify: __apache_restart
-
-...
