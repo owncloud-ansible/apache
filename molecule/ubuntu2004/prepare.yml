@@ -12,7 +12,7 @@
 
     - name: Populate the instance config
       set_fact:
-        instance_conf: "{{ (lookup('file', molecule_instance_config) | molecule_from_yaml) if cfg.stat.exists else [] }}"
+        instance_conf: "{{ (lookup('file', molecule_instance_config) | from_yaml) if cfg.stat.exists else [] }}"
       delegate_to: localhost
       run_once: true
 

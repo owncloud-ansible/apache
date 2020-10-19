@@ -101,7 +101,10 @@
 
     - name: Dump instance config
       copy:
-        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        content: |
+          # Molecule managed
+
+          {{ instance_conf | to_json | from_json | to_yaml }}
         dest: "{{ molecule_instance_config }}"
       when: server.changed | bool
 
@@ -111,7 +114,7 @@
         host: "{{ item.address }}"
         search_regex: SSH
         delay: 10
-      loop: "{{ lookup('file', molecule_instance_config) | molecule_from_yaml }}"
+      loop: "{{ lookup('file', molecule_instance_config) | from_yaml }}"
 
     - name: Wait for VM to settle down
       pause:
