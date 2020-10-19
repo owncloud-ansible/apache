@@ -7,9 +7,9 @@ apache_vhost_name: "owncloud.conf"
 
 # Additional properties:
 # 'serveradmin, serveralias, allow_override, options, extra_parameters'.
-apache_vhosts:
-  - servername: "cloud.owncloud.demo"
-    documentroot: "/var/www/owncloud"
+# apache_vhosts:
+#   - servername: "cloud.owncloud.demo"
+#     documentroot: "/var/www/owncloud"
 
 apache_vhosts_ssl: []
 # @var apache_vhosts_ssl:example: >
