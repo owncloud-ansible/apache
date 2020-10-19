@@ -1,15 +1,14 @@
 ---
 - name: Enable Apache mods
-  file:
-    src: "{{ apache_server_root }}/mods-available/{{ item }}"
-    dest: "{{ apache_server_root }}/mods-enabled/{{ item }}"
-    state: link
+  apache2_module:
+    name: "{{ item }}"
+    state: present
   loop: "{{ apache_mods_enabled }}"
   notify: __apache_restart
 
 - name: Disable Apache mods
-  file:
-    path: "{{ apache_server_root }}/mods-enabled/{{ item }}"
+  apache2_module:
+    name: "{{ item }}"
     state: absent
   loop: "{{ apache_mods_disabled }}"
   notify: __apache_restart
