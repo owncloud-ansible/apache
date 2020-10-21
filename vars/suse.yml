@@ -15,4 +15,4 @@ __apache_ports_configuration_items:
 
 __apache_vhosts:
   - servername: "cloud.owncloud.demo"
-    documentroot: "/srv/www/owncloud"
+    documentroot: "/srv/www/htdocs/owncloud"
