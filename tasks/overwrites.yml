@@ -33,3 +33,8 @@
   set_fact:
     apache_ports_configuration_items: "{{ __apache_ports_configuration_items }}"
   when: apache_ports_configuration_items is not defined
+
+- name: Define apache_vhosts
+  set_fact:
+    apache_vhosts: "{{ __apache_vhosts }}"
+  when: apache_vhosts is not defined

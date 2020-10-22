@@ -15,22 +15,15 @@
 
 - name: Remove default vhost in sites-enabled
   file:
-    path: "{{ apache_conf_path }}/sites-enabled/{{ apache_default_vhost_name }}"
+    path: "{{ apache_conf_path }}/vhosts.d/{{ apache_default_vhost_name }}"
     state: absent
   notify: __apache_restart
 
 - name: Add apache vhosts configuration
   template:
     src: owncloud.conf.j2
-    dest: "{{ apache_conf_path }}/sites-available/{{ apache_vhost_name }}"
+    dest: "{{ apache_conf_path }}/vhosts.d/{{ apache_vhost_name }}"
     owner: root
     group: root
     mode: 0644
-  notify: __apache_restart
-
-- name: Add vhost symlink in sites-enabled
-  file:
-    src: "{{ apache_conf_path }}/sites-available/{{ apache_vhost_name }}"
-    dest: "{{ apache_conf_path }}/sites-enabled/{{ apache_vhost_name }}"
-    state: link
   notify: __apache_restart
