@@ -25,7 +25,6 @@ Role to setup Apache webserver.
   * [apache_ssl_protocol](#apache_ssl_protocol)
   * [apache_state](#apache_state)
   * [apache_vhost_name](#apache_vhost_name)
-  * [apache_vhosts](#apache_vhosts)
   * [apache_vhosts_ssl](#apache_vhosts_ssl)
 * [Dependencies](#dependencies)
 
@@ -91,14 +90,14 @@ Only used on Debian/Ubuntu.
 
 ```YAML
 apache_mods_enabled:
-  - rewrite.load
-  - ssl.load
-  - headers.load
-  - env.load
-  - dir.load
-  - mime.load
-  - unique_id.load
-  - autoindex.load
+  - rewrite
+  - ssl
+  - headers
+  - env
+  - dir
+  - mime
+  - unique_id
+  - autoindex
 ```
 
 ### apache_options
@@ -173,16 +172,6 @@ apache_state: started
 
 ```YAML
 apache_vhost_name: owncloud.conf
-```
-
-### apache_vhosts
-
-#### Default value
-
-```YAML
-apache_vhosts:
-  - servername: cloud.owncloud.demo
-    documentroot: /var/www/owncloud
 ```
 
 ### apache_vhosts_ssl
