@@ -1,23 +1,26 @@
 ---
-- include_vars: "{{ lookup('first_found', params) }}"
+- include_vars: "{{ var_files }}"
   vars:
     params:
       files:
         - "{{ ansible_os_family | lower }}.yml"
       paths:
         - "vars"
-      errors: "ignore"
+    var_files: "{{ lookup('first_found', params, errors='ignore') }}"
+  when: var_files | lenght > 0
+
 - include_tasks: overwrites.yml
 
 - include_tasks: "setup.yml"
-- include_tasks: "{{ lookup('first_found', params) }}"
+- include_tasks: "{{ task_files }}"
   vars:
     params:
       files:
         - "configure-{{ ansible_os_family | lower }}.yml"
       paths:
         - "tasks"
-      errors: "ignore"
+    task_files: "{{ lookup('first_found', params, errors='ignore') }}"
+  when: task_files | length > 0
 
 - include_tasks: tls.yml
 - include_tasks: post.yml
