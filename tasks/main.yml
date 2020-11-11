@@ -7,7 +7,7 @@
       paths:
         - "vars"
     var_files: "{{ lookup('first_found', params, errors='ignore') }}"
-  when: var_files | lenght > 0
+  when: var_files | length > 0
 
 - include_tasks: overwrites.yml
 
