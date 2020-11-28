@@ -76,7 +76,7 @@ local PipelineDocumentation = {
     },
     {
       name: 'publish',
-      image: 'plugins/gh-pages:latest',
+      image: 'plugins/gh-pages',
       settings: {
         username: { from_secret: 'github_username' },
         password: { from_secret: 'github_token' },
