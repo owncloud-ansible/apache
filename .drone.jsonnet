@@ -110,6 +110,7 @@ local PipelineDocumentation = {
     'testing-ubuntu1804',
     'testing-ubuntu2004',
     'testing-centos7',
+    'testing-centos8',
     'testing-opensuse15',
   ],
 };
@@ -140,6 +141,7 @@ local PipelineNotification = {
     'testing-ubuntu1804',
     'testing-ubuntu2004',
     'testing-centos7',
+    'testing-centos8',
     'testing-opensuse15',
     'documentation',
   ],
@@ -151,6 +153,7 @@ local PipelineNotification = {
   PipelineTesting(scenario='ubuntu1804'),
   PipelineTesting(scenario='ubuntu2004'),
   PipelineTesting(scenario='centos7'),
+  PipelineTesting(scenario='centos8'),
   PipelineTesting(scenario='opensuse15'),
   PipelineDocumentation,
   PipelineNotification,

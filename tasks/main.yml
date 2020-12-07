@@ -3,6 +3,7 @@
   vars:
     params:
       files:
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version }}.yml"
         - "{{ ansible_os_family | lower }}.yml"
       paths:
         - "vars"
