@@ -17,7 +17,6 @@
   vars:
     params:
       files:
-        - "configure-{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version }}.yml"
         - "configure-{{ ansible_os_family | lower }}.yml"
       paths:
         - "tasks"
