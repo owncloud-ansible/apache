@@ -125,6 +125,41 @@ depends_on:
 
 ---
 kind: pipeline
+name: testing-centos8
+
+platform:
+  os: linux
+  arch: amd64
+
+concurrency:
+  limit: 1
+
+workspace:
+  base: /drone/src
+  path: apache
+
+steps:
+- name: molecule
+  image: thegeeklab/molecule:3
+  commands:
+  - molecule test -s centos8
+  environment:
+    HCLOUD_TOKEN:
+      from_secret: hcloud_token
+    PY_COLORS: 1
+    USER: root
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**
+
+depends_on:
+- linting
+
+---
+kind: pipeline
 name: testing-opensuse15
 
 platform:
@@ -212,6 +247,7 @@ depends_on:
 - testing-ubuntu1804
 - testing-ubuntu2004
 - testing-centos7
+- testing-centos8
 - testing-opensuse15
 
 ---
@@ -244,11 +280,12 @@ depends_on:
 - testing-ubuntu1804
 - testing-ubuntu2004
 - testing-centos7
+- testing-centos8
 - testing-opensuse15
 - documentation
 
 ---
 kind: signature
-hmac: 6d6939d3b914deca573b22fa5b66fbd18923f2f256d0a03075e125025d86b658
+hmac: c5cefcecf1174c5ab560cd0a367c3738116e84f20ff26542dbb421a6a5587db6
 
 ...
