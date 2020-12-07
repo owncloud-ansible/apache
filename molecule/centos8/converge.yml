@@ -1,9 +1,5 @@
 ---
 - name: Converge
   hosts: all
-  vars:
-    apache_packages_extra:
-      - centos-release-scl
-
   roles:
     - role: apache
