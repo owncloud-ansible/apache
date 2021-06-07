@@ -12,6 +12,22 @@ steps:
   commands:
   - ansible-later
 
+- name: python-format
+  image: python:3.9
+  commands:
+  - pip install -qq yapf
+  - yapf -dr ./
+  environment:
+    PY_COLORS: 1
+
+- name: python-flake8
+  image: python:3.9
+  commands:
+  - pip install -qq flake8
+  - flake8
+  environment:
+    PY_COLORS: 1
+
 trigger:
   ref:
   - refs/heads/master
@@ -286,6 +302,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: c5cefcecf1174c5ab560cd0a367c3738116e84f20ff26542dbb421a6a5587db6
+hmac: 4013e24b022b5412e905b8a7463fbef251f26eca97d17afdf6b433830d655f05
 
 ...
