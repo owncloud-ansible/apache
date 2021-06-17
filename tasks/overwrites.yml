@@ -24,11 +24,6 @@
     apache_conf_path: "{{ __apache_conf_path }}"
   when: apache_conf_path is not defined
 
-- name: Define apache_port_conf_file
-  set_fact:
-    apache_port_conf_file: "{{ __apache_port_conf_file }}"
-  when: apache_port_conf_file is not defined
-
 - name: Define apache_ports_configuration_items
   set_fact:
     apache_ports_configuration_items: "{{ __apache_ports_configuration_items }}"

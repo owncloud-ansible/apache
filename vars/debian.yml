@@ -2,7 +2,6 @@
 __apache_service: apache2
 __apache_server_root: /etc/apache2
 __apache_conf_path: "{{ __apache_server_root }}"
-__apache_port_conf_file: "{{ __apache_server_root }}/ports.conf"
 
 __apache_default_vhost_name: 000-default.conf
 
@@ -11,8 +10,12 @@ __apache_packages:
   - apache2-utils
 
 __apache_ports_configuration_items:
-  - regexp: "^Listen "
-    line: "Listen {{ apache_listen_port }}"
+  - file: "{{ __apache_server_root }}/ports.conf"
+    regexp: "^(Listen).*$"
+    replace: '\1 {{ apache_listen_port }}'
+  - file: "{{ __apache_server_root }}/ports.conf"
+    regexp: '^([ \t]+Listen).*$'
+    replace: '\1 {{ apache_listen_port_ssl }}'
 
 __apache_vhosts:
   - servername: "cloud.owncloud.demo"

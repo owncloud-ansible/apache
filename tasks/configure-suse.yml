@@ -19,6 +19,14 @@
     state: absent
   notify: __apache_restart
 
+- name: Setup sysconfig
+  replace:
+    path: "{{ __apache_sysconfig_path }}"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  loop: "{{ __apache_sysconfig_items }}"
+  notify: __apache_restart
+
 - name: Add apache vhosts configuration
   template:
     src: owncloud.conf.j2

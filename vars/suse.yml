@@ -2,7 +2,7 @@
 __apache_service: apache2
 __apache_server_root: /etc/apache2
 __apache_conf_path: "{{ __apache_server_root }}"
-__apache_port_conf_file: "{{ __apache_server_root }}/listen.conf"
+__apache_sysconfig_path: "/etc/sysconfig/apache2"
 
 __apache_default_vhost_name: vhost.template
 
@@ -10,8 +10,16 @@ __apache_packages:
   - apache2
 
 __apache_ports_configuration_items:
-  - regexp: "^Listen "
-    line: "Listen {{ apache_listen_port }}"
+  - file: "{{ __apache_server_root }}/listen.conf"
+    regexp: "^(Listen).*$"
+    replace: '\1 {{ apache_listen_port }}'
+  - file: "{{ __apache_server_root }}/listen.conf"
+    regexp: '^([ \t]+Listen).*$'
+    replace: '\1 {{ apache_listen_port_ssl }}'
+
+__apache_sysconfig_items:
+  - regexp: "^(APACHE_SERVER_FLAGS=).*$"
+    replace: '\1"SSL HTTP2"'
 
 __apache_vhosts:
   - servername: "cloud.owncloud.demo"
