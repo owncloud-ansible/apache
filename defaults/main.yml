@@ -15,6 +15,7 @@ apache_vhost_name: "owncloud.conf"
 # apache_vhosts:
 #   - servername: "cloud.owncloud.demo"
 #     documentroot: "/var/www/owncloud"
+#
 #     # optional properties
 #     serveradmin:
 #     serveralias:
