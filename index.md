@@ -25,6 +25,7 @@ Role to setup Apache webserver.
   * [apache_ssl_protocol](#apache_ssl_protocol)
   * [apache_state](#apache_state)
   * [apache_vhost_name](#apache_vhost_name)
+  * [apache_vhosts](#apache_vhosts)
   * [apache_vhosts_ssl](#apache_vhosts_ssl)
 * [Dependencies](#dependencies)
 
@@ -174,7 +175,35 @@ apache_state: started
 apache_vhost_name: owncloud.conf
 ```
 
+### apache_vhosts
+
+#### Default value
+
+```YAML
+apache_vhosts:
+  - servername: "cloud.owncloud.demo"
+    documentroot: "/var/www/owncloud"
+```
+
+#### Example usage
+
+```YAML
+apache_vhosts:
+  - servername: "cloud.owncloud.demo"
+    documentroot: "/var/www/owncloud"
+
+
+    # optional properties
+    serveradmin:
+    serveralias:
+    allow_override: defaults to apache_allow_override
+    options: defaults to apache_options
+    extra_parameters: []
+```
+
 ### apache_vhosts_ssl
+
+Define SSL enbaled Vhost configurations. The example below shows all available properties that can be set.
 
 #### Default value
 
@@ -186,16 +215,37 @@ apache_vhosts_ssl: []
 
 ```YAML
 apache_vhosts_ssl:
-  - servername: "local.dev"
+  - servername: "cloud.owncloud.demo"
     documentroot: "/var/www/html"
+
+
+    # Location of the SSL certificate file to use. The file has to exist on the target host already or
+    # you can use `certificate_file_source` to deploy a certificate located on the Ansible control host.
     certificate_file: "/path/to/certificate.crt"
-    certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
+
+
+    # Location of the SSL certificate key file to use. The file has to exist on the target host already or
+    # you can use `certificate_key_source` to deploy a certificate key located on the Ansible control host.
     certificate_key_file: "/path/to/certificate.key"
+
+
+    # optional properties
+    serveradmin:
+    serveralias:
+    allow_override: defaults to apache_allow_override
+    options: defaults to apache_options
+    extra_parameters: []
+
+
+    # The properties `certificate_file_source` and `certificate_key_source` can be used to deploy SSl
+    # certificate files located on the Ansible control host to the target host (web server). If these
+    # variables are not set, the SSL certificates need to be located on the tarhet host already.
+    certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
-    # Optional.
     certificate_chain_file: "/path/to/certificate_chain.crt"
     certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
-    header_ocsp_trusted_certificate:
+
+
     header_hsts_options:
       - max-age=63072000
       - includeSubDomains
