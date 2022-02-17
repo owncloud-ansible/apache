@@ -5,7 +5,6 @@
       {{
         __apache_cert_files | default([]) + [
           { 'src': item.certificate_file_source | default(False), 'dest': item.certificate_file | default(False), 'mode': '0750' },
-          { 'src': item.certificate_chain_source | default(False), 'dest': item.certificate_chain_file | default(False), 'mode': '0750' },
           { 'src': item.certificate_key_source | default(False), 'dest': item.certificate_key_file | default(False), 'mode': '0600' },
         ]
       }}

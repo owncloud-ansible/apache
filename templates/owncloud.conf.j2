@@ -48,9 +48,6 @@
   SSLCompression off
   SSLCertificateFile {{ vhost.certificate_file }}
   SSLCertificateKeyFile {{ vhost.certificate_key_file }}
-{% if vhost.certificate_chain_file is defined %}
-  SSLCertificateChainFile {{ vhost.certificate_chain_file }}
-{% endif %}
 
 {% if vhost.header_hsts_options is defined %}
   # protect against protocol downgrading and cookie hijacking
