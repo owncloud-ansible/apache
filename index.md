@@ -221,6 +221,8 @@ apache_vhosts_ssl:
 
     # Location of the SSL certificate file to use. The file has to exist on the target host already or
     # you can use `certificate_file_source` to deploy a certificate located on the Ansible control host.
+    # This file contains the SSL certificate and may also include intermediate CA certificates, sorted from
+    # leaf to root to create a full chain certificate.
     certificate_file: "/path/to/certificate.crt"
 
 
@@ -242,8 +244,6 @@ apache_vhosts_ssl:
     # variables are not set, the SSL certificates need to be located on the target host already.
     certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
-    certificate_chain_file: "/path/to/certificate_chain.crt"
-    certificate_chain_source: "/path/to/source/on/ansible_host/certificate_chain.crt"
 
 
     header_hsts_options:
