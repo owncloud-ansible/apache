@@ -22,18 +22,15 @@
 
 - block:
     - name: Ensure apache is running in prefork mode
-      lineinfile:
+      replace:
         path: /etc/httpd/conf.modules.d/00-mpm.conf
-        regexp: "{{ item.search }}"
-        line: "{{ item.replace }}"
-        owner: root
-        group: root
-        mode: 0644
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
       loop:
-        - search: "^LoadModule mpm_event_module"
-          replace: "#LoadModule mpm_event_module"
-        - search: "^#LoadModule mpm_prefork_module"
-          replace: "LoadModule mpm_prefork_module"
+        - regexp: "^(LoadModule mpm_event_module .*)$"
+          replace: '#\1'
+        - regexp: "^#(LoadModule mpm_prefork_module.*)"
+          replace: '\1'
       notify: __apache_restart
 
     - name: Set required SELinux boolean
