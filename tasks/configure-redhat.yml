@@ -19,3 +19,24 @@
     group: root
     mode: 0644
   notify: __apache_restart
+
+- block:
+    - name: Ensure apache is running in prefork mode
+      replace:
+        path: /etc/httpd/conf.modules.d/00-mpm.conf
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+      loop:
+        - regexp: "^(LoadModule mpm_event_module .*)$"
+          replace: '#\1'
+        - regexp: "^#(LoadModule mpm_prefork_module.*)"
+          replace: '\1'
+      notify: __apache_restart
+
+    - name: Set required SELinux boolean
+      seboolean:
+        name: httpd_graceful_shutdown
+        state: True
+        persistent: True
+
+  when: ansible_distribution_major_version == "8"
