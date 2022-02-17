@@ -237,9 +237,9 @@ apache_vhosts_ssl:
     extra_parameters: []
 
 
-    # The properties `certificate_file_source` and `certificate_key_source` can be used to deploy SSl
+    # The properties `certificate_file_source` and `certificate_key_source` can be used to deploy SSL
     # certificate files located on the Ansible control host to the target host (web server). If these
-    # variables are not set, the SSL certificates need to be located on the tarhet host already.
+    # variables are not set, the SSL certificates need to be located on the target host already.
     certificate_file_source: "/path/to/source/on/ansible_host/certificate.crt"
     certificate_key_source: "/path/to/source/on/ansible_host/certificate.key"
     certificate_chain_file: "/path/to/certificate_chain.crt"
