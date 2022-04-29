@@ -202,7 +202,7 @@ apache_vhosts:
 
 ### apache_vhosts_ssl
 
-Define SSL enbaled Vhost configurations. The example below shows all available properties that can be set.
+Define SSL enabled Vhost configurations. The example below shows all available properties that can be set.
 
 #### Default value
 
