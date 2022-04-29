@@ -26,7 +26,7 @@ apache_vhost_name: "owncloud.conf"
 
 apache_vhosts_ssl: []
 # @var apache_vhosts_ssl:description: >
-# Define SSL enbaled Vhost configurations. The example below shows all available properties that can be set.
+# Define SSL enabled Vhost configurations. The example below shows all available properties that can be set.
 # @end
 
 # @var apache_vhosts_ssl:example: >
