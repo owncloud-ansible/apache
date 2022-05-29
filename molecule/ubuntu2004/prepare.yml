@@ -31,7 +31,7 @@
         (test -e /usr/bin/dnf && sudo dnf install -y python3) ||
         (test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal)) ||
         (test -e /usr/bin/yum && sudo yum -y -qq install python3) ||
-        echo "Warning: Python not boostrapped due to unknown platform."
+        echo "Warning: Python not bootstrapped due to unknown platform."
         )
       become: true
       changed_when: false
