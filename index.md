@@ -5,9 +5,9 @@ type: docs
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/owncloud-ansible/apache) [![Build Status](https://drone.owncloud.com/api/badges/owncloud-ansible/apache/status.svg)](https://drone.owncloud.com/owncloud-ansible/apache) [![GitHub](https://img.shields.io/github/license/owncloud-ansible/apache)](https://github.com/owncloud-ansible/apache/blob/main/LICENSE)
 
-{{< hint type=warning >}} We have switched to 'main' as default branch. The 'master' branch is no longer maintained and will be removed after March 31, 2022! {{< /hint >}}
-
 Role to setup Apache webserver.
+
+<!--more-->
 
 - [Default Variables](#default-variables)
   - [apache_allow_override](#apache_allow_override)
